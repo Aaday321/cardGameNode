@@ -9,7 +9,7 @@ class Player{
     }
 }
 
-function convertAceToHigh(deck){
+function convertAcesToHigh(deck){
     for(let card of deck) if(card.value === 1) card.value = 14;
 }
 
@@ -33,12 +33,12 @@ async function setUpPlayers(){
 async function WAR (){
     //Game set up
     let simToEnd = false;
+    let winner = null;
     const myDeck = new Deck().shuffle();
     const highAces = await getBooleanWithPrompt(MENU_TEXT.highAces);
-    if(highAces) convertAceToHigh(myDeck);
+    if(highAces) convertAcesToHigh(myDeck);
     const players = await setUpPlayers();
     dealCards(myDeck, players);
-    let winner = null;
 
     //Main game loop
     while(!winner){
