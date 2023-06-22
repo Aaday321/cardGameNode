@@ -6,11 +6,13 @@ async function run(){
     let attempts = 0;
     while(!loadedGame){
         if(attempts) console.log(MENU_TEXT.gameNotFound);
-        const gameSelection = await getInputWithPrompt(MENU_TEXT.introText);
-        switch(gameSelection.toLowerCase()){
-            case 'war': loadedGame = require('./games/war/index'); break;  
+        let gameSelection = await getInputWithPrompt(MENU_TEXT.introText);
+        gameSelection = gameSelection.toLowerCase();
+        try{
+            loadedGame = require(`./games/${gameSelection}/index`);
+        }catch(err){
+            attempts++
         }
-        attempts++;
     }
     loadedGame();
 };
