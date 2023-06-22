@@ -50,7 +50,6 @@ async function WAR (){
         let handWinner = undefined;
         console.log('\n');
         for(let i of cardsInMiddle){
-            if( !i.player.hand.length) console.log(players);
             const hand = `${i.card.display} of ${i.card.suit}S`;
             console.log(`${i.player.name }: ${hand}`);
             if(handWinner === undefined || i.card.value > handWinner.card.value){
